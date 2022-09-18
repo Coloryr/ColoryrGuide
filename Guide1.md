@@ -320,7 +320,7 @@ Building ${BIN_FILE}")
 ```
 
 点击VSCode的左下角Cmake，或者重新打开VSCode  
-选择Gcc工具链
+选择Gcc工具链  
 ![](/pic/pic11.png)  
 `GCC 10.3.1 arm-none-eabi`
 
@@ -340,7 +340,7 @@ CMake会自动加载，出现这步则加载完成
 点击`显示所有自动调试配置`->`添加配置`
 ![](/pic/pic15.png)  
 
-找到`cortex-debug`
+找到`cortex-debug`  
 ![](/pic/pic16.png)  
 选择你的调试器类型
 
