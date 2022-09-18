@@ -36,7 +36,7 @@ Cortex-Debug需要安装对应芯片的扩展包，我用的是H7所以安装H7�
 代码生成选项
 ![](/pic/pic6.png)  
 
-生成代码之后的文件夹
+生成代码之后的文件夹  
 ![](/pic/pic7.png)  
 
 使用VSCode打开此文件夹，新建一个`CMakeLists.txt`
