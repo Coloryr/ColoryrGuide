@@ -4,6 +4,8 @@
 
 ## [STM32之VSCode+Cmake+Ninja+GCC+Stm32CubeMX+Debug](/Guide1.md)
 
+## [ESP32之VSCode+ESP-IDF](/Guide2.md)
+
 ## [Keil](https://www.keil.com/)
 在[官网](https://www.keil.com/demo/eval/arm.htm)下载，安装后即可使用
 
