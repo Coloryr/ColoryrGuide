@@ -1,3 +1,17 @@
+# STM32 VS+STM32CubeMX+STM32CubeCLT
+
+首先下载VS，安装C/C++与[嵌入式支持](https://devblogs.microsoft.com/cppblog/importing-st-projects-into-visual-studio/)
+
+[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径
+
+打开命令行输入
+```
+iex (iwr -useb https://aka.ms/vcpkg-init.ps1)
+```
+
+使用STM32CubeMX创建工程，选择STM32CubeIDE工程导出，使用VS打开
+
+
 # STM32之VSCode+Cmake+Ninja+GCC+Stm32CubeMX+Debug
 
 首先安装[cmake](https://cmake.org/)，[gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)，[ninja](https://ninja-build.org/)，[MinGW](https://gnutoolchains.com/mingw64/)，[openocd](https://openocd.sourceforge.io/)
