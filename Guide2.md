@@ -10,6 +10,16 @@ windows下切记先切到`cmd`
 git clone https://github.com/espressif/esp-idf.git
 ```
 
+代码拉下来后的分支不一定是稳定版的  
+检查分支
+```
+git branch -a
+```
+切换分支
+```
+git checkout -b release/v5.1 origin/release/v5.1
+```
+
 设置环境变量
 IDF_PATH
 
