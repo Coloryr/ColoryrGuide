@@ -4,6 +4,8 @@
 
 [Windows快速方法](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/windows-setup.html)
 
+windows下切记先切到`cmd`
+
 ```
 $ git clone https://github.com/espressif/esp-idf.git
 ```
