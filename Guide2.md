@@ -7,7 +7,7 @@
 windows下切记先切到`cmd`
 
 ```
-$ git clone https://github.com/espressif/esp-idf.git
+git clone https://github.com/espressif/esp-idf.git
 ```
 
 设置环境变量
@@ -16,6 +16,9 @@ IDF_PATH
 ![](/pic/pic17.png)
 
 cd到esp-idf目录
+```
+cd esp-idf
+```
 
 设置工具
 ```
