@@ -2,6 +2,6 @@
 
 一个分享向的指南
 
-## [STM32之VSCode+Cmake+Ninja+GCC+Stm32CubeMX+Debug](/Guide1.md)
+## [STM32开发](/Guide1.md)
 
-## [ESP32之VSCode+ESP-IDF](/Guide2.md)
+## [ESP32开发](/Guide2.md)

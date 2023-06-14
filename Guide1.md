@@ -11,6 +11,41 @@ iex (iwr -useb https://aka.ms/vcpkg-init.ps1)
 
 使用STM32CubeMX创建工程，选择STM32CubeIDE工程导出，使用VS打开
 
+# STM32 VSCode+STM32CubeMX+STM32CubeCLT
+
+[安装VSCode](https://code.visualstudio.com/)  
+[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径
+
+安装插件[STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)
+
+使用CubeMX生成CubeIDE工程够，在VSCode左侧导入工程
+![](/pic/pic20.png)
+
+下面步骤可选
+1. 使用本地自带的CMake与工具链
+(确保你的Path中已经包含CMake等工具链)
+关闭VSCode
+删除`vcpkg-configuration.json`
+重启VSCode
+2. 使用vcpkg自动安装完所有工具链
+不删除`vcpkg-configuration.json`即可
+
+打开`cmake/gcc-arm-none-eabi.cmake`，修改其中的
+```
+set(WINDOWS_ST_CLT_PATH "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin/")
+```
+路径为你的STclt路径
+
+打开`.vscode/launch.json`
+
+修改`${command:vscode-embedded.st.gdb}`为`C:\ST\STM32CubeCLT\GNU-tools-for-STM32\bin\arm-none-eabi-gdb.exe`  
+`${command:vscode-embedded.st.gdbserver}`为`C:\ST\STM32CubeCLT\STLink-gdb-server\bin\ST-LINK_gdbserver.exe`  
+`${command:vscode-embedded.st.cubeprogrammer}`为`C:\ST\STM32CubeCLT\STM32CubeProgrammer\bin`  
+
+重启VSCode
+
+到此Build和Debug就都可用了
+![](/pic/pic21.png)
 
 # STM32之VSCode+Cmake+Ninja+GCC+Stm32CubeMX+Debug
 
