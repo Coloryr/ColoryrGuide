@@ -39,8 +39,8 @@ set(WINDOWS_ST_CLT_PATH "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin/")
 打开`.vscode/launch.json`
 
 修改`${command:vscode-embedded.st.gdb}`为`C:\ST\STM32CubeCLT\GNU-tools-for-STM32\bin\arm-none-eabi-gdb.exe`  
-`${command:vscode-embedded.st.gdbserver}`为`C:\ST\STM32CubeCLT\STLink-gdb-server\bin\ST-LINK_gdbserver.exe`  
-`${command:vscode-embedded.st.cubeprogrammer}`为`C:\ST\STM32CubeCLT\STM32CubeProgrammer\bin`  
+`${command:vscode-embedded.st.gdbserver}`为`C:\\ST\\STM32CubeCLT\\STLink-gdb-server\\bin\\ST-LINK_gdbserver.exe`  
+`${command:vscode-embedded.st.cubeprogrammer}`为`C:\\ST\\STM32CubeCLT\\STM32CubeProgrammer\\bin`  
 
 重启VSCode
 
