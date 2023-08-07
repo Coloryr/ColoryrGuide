@@ -70,3 +70,9 @@ Cmake和mingw64只需要解压出来放在一个文件夹下即可
 
 添加了新的.c文件后，需要在CmakeList.txt中添加  
 ![Alt text](/pic/pic36.png) 
+
+3. 头文件查找路径
+```
+include_directories(${TARGET_NAME}
+./xxxxx)
+```
