@@ -15,10 +15,10 @@ iex (iwr -useb https://aka.ms/vcpkg-init.ps1)
 
 ## VSCode + STM32CubeMX + STM32CubeCLT (推荐，稳定能用)
 
-[安装VSCode](https://code.visualstudio.com/)  
+[安装VSCode](https://code.visualstudio.com/) [安装插件 STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)  
 [安装stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)  
-[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径
-[安装插件 STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)
+[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径，或者改成你知道的路径
+
 
 1. 使用CubeMX创建工程，然后选择生成CubeIDE工程
 ![](/pic/pic37.png)
