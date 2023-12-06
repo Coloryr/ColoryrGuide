@@ -1,4 +1,6 @@
-# STM32 VS+STM32CubeMX+STM32CubeCLT
+# 自己搭工具链
+
+## VS + STM32CubeMX + STM32CubeCLT (不推荐，可尝鲜)
 
 首先下载VS，安装C/C++与[嵌入式支持](https://devblogs.microsoft.com/cppblog/importing-st-projects-into-visual-studio/)
 
@@ -11,43 +13,48 @@ iex (iwr -useb https://aka.ms/vcpkg-init.ps1)
 
 使用STM32CubeMX创建工程，选择STM32CubeIDE工程导出，使用VS打开
 
-# STM32 VSCode+STM32CubeMX+STM32CubeCLT
+## VSCode + STM32CubeMX + STM32CubeCLT (推荐，稳定能用)
 
 [安装VSCode](https://code.visualstudio.com/)  
+[安装stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)  
 [安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径
+[安装插件 STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)
 
-安装插件[STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)
+1. 使用CubeMX创建工程，然后选择生成CubeIDE工程
+![](/pic/pic37.png)
 
-使用CubeMX生成CubeIDE工程够，在VSCode左侧导入工程
+2. 在VSCode左侧导入工程  
 ![](/pic/pic20.png)
+选择CubeIDE工程
 
-下面步骤可选
-1. 使用本地自带的CMake与工具链
+3. 下面步骤二选一  
+(1) 使用本地自带的CMake与工具链
 (确保你的Path中已经包含CMake等工具链)
 关闭VSCode
 删除`vcpkg-configuration.json`
 重启VSCode
-2. 使用vcpkg自动安装完所有工具链
+(2) 使用vcpkg自动安装完所有工具链
 不删除`vcpkg-configuration.json`即可
 
-打开`cmake/gcc-arm-none-eabi.cmake`，修改其中的
+4. 打开`cmake/gcc-arm-none-eabi.cmake`  
+修改其中的
 ```
 set(WINDOWS_ST_CLT_PATH "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin/")
-```
+```  
 路径为你的STclt路径
 
-打开`.vscode/launch.json`
-
+5. 打开`.vscode/launch.json`  
 修改`${command:vscode-embedded.st.gdb}`为`C:\ST\STM32CubeCLT\GNU-tools-for-STM32\bin\arm-none-eabi-gdb.exe`  
 `${command:vscode-embedded.st.gdbserver}`为`C:\\ST\\STM32CubeCLT\\STLink-gdb-server\\bin\\ST-LINK_gdbserver.exe`  
 `${command:vscode-embedded.st.cubeprogrammer}`为`C:\\ST\\STM32CubeCLT\\STM32CubeProgrammer\\bin`  
+路径为你的STclt路径
 
-重启VSCode
+6. 重启VSCode
 
 到此Build和Debug就都可用了
 ![](/pic/pic21.png)
 
-# STM32之VSCode+Cmake+Ninja+GCC+Stm32CubeMX+Debug
+## VSCode Cmake Ninja GCC Stm32CubeMX Debug (不推荐，麻烦)
 
 首先安装[cmake](https://cmake.org/)，[gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)，[ninja](https://ninja-build.org/)，[MinGW](https://gnutoolchains.com/mingw64/)，[openocd](https://openocd.sourceforge.io/)
 
@@ -400,26 +407,28 @@ CMake会自动加载，出现这步则加载完成
 
 按下F5就能debug了
 
-# 其他
+# 集成开发工具
 
-## [Keil](https://www.keil.com/)
+## Keil (不推荐)
 在[官网](https://www.keil.com/demo/eval/arm.htm)下载，安装后即可使用
 
 接下来还需要[安装](https://www.keil.com/dd2/pack/)不同的单片机软件包
 
-## [STM32CubeIDE](https://www.st.com/zh/development-tools/stm32cubeide.html)
+## STM32CubeIDE (新手推荐)
 
-和`Keil`一样，这个也是直接安装就能用的，新建工程选择单片机和就能进行编写代码
+https://www.st.com/zh/development-tools/stm32cubeide.html
 
-## [VSCode](https://code.visualstudio.com/)
+和`Keil`一样，这个也是直接安装就能用的，新建工程选择单片机和就能进行编写代码，需要安装芯片包
 
-安装完后还需要装插件[PlatformIO IDE](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)
+## VSCode + PlatformIO IDE (新手推荐)
+
+安装完[Vscode](https://code.visualstudio.com/)后还需要装插件[PlatformIO IDE](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)
 
 安装完成后打开`PIO`主页，新建或者使用例程
 
-## [Clion](https://www.jetbrains.com/clion/)
+## Clion + STM32CubeMX (有钱人推荐)
 
-使用`Clion`开发还需要下载安装[STM32CubeMX](https://www.st.com/zh/development-tools/stm32cubemx.html)、[mingw64](https://www.mingw-w64.org/downloads/)、[arm-none-eabi](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
+使用[Clion](https://www.jetbrains.com/clion/)开发还需要下载安装[STM32CubeMX](https://www.st.com/zh/development-tools/stm32cubemx.html)、[mingw64](https://www.mingw-w64.org/downloads/)、[arm-none-eabi](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)
 
 所有都安装完成后，添加`mingw64`和`arm-none-eabi`的`bin`到[环境变量](https://jingyan.baidu.com/article/a17d5285c9b0c48099c8f26a.html)的`path`去
 
