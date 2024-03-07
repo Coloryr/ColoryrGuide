@@ -10,10 +10,17 @@
   - [下载地址获取](#下载地址获取)
   - [文件储存结构](#文件储存结构)
 - [登录与启动](#登录与启动)
-- [OAuth登录新账户](#OAuth登录新账户)
-- [OAuth刷新密钥](#OAuth刷新密钥)
-- [第三方登录](#第三方登录)
-- [游戏启动](#游戏启动)
+  - [OAuth登录新账户](#OAuth登录新账户)
+  - [OAuth刷新密钥](#OAuth刷新密钥)
+  - [第三方登录](#第三方登录)
+  - [游戏启动](#游戏启动)
+- [模组加载器](#模组加载器)
+  - [Forge-获取](#Forge-获取)
+  - [Forge-V1-解析](#Forge-V1-解析)
+  - [Forge-V2-解析](#Forge-V2-解析)
+  - [Forge-1.13以下版本启动](#Forge-1.13以下版本启动)
+  - [Forge-1.13及以上启动](#Forge-1.13及以上启动)
+  - [Fabric获取与启动](#Fabric获取与启动)
 
 ## 前言
 
@@ -861,7 +868,7 @@ Forge基础信息分为V1和V2两个版本
 若有`install_profile.json`与`version.json`两个文件，则为V2版本  
 只有`install_profile.json`则为V1版本
 
-### Forge V1 解析
+### Forge-V1-解析
 解压installer jar，需要拿到两个文件
 ```
 - forge-1.11.2-13.20.1.2588-installer.jar \
@@ -932,7 +939,7 @@ https://maven.minecraftforge.net/com/typesafe/config/1.2.1/config-1.2.1.jar
 ```
 以此类推，将两个`libraries`数组中的库下载，去掉重复的，这样就算下载完资源了
 
-### Forge V2 解析
+### Forge-V2-解析
 解压installer jar，需要拿到两个文件
 ```
 - forge-1.20.4-49.0.31-installer.jar \
@@ -943,7 +950,7 @@ https://maven.minecraftforge.net/com/typesafe/config/1.2.1/config-1.2.1.jar
 你发现，其实V2的json和V1的json几乎是一样的  
 只有`libraries`部分的解析是不一样的，剩余的运行库下载是一样的
 
-### Forge 1.13以下版本启动
+### Forge-1.13以下版本启动
 这里以1.12.2版本为例  
 启动前已经下载好了minecraft游戏文件，Forge运行库，Forge文件等
 
@@ -994,7 +1001,7 @@ ${version_type}
 
 之后在替换掉对应的变量，添加Forge的libs到classpath中，即可启动游戏  
 
-### Forge 1.13及以上启动
+### Forge-1.13及以上启动
 在1.13以上，没有了launchwrapper，因此Forge启动前需要安装（反编译 反混淆 重编译）
 
 这些步骤可以通过[ForgeWrapper](https://github.com/ZekerZhayard/ForgeWrapper)一步实现，然后启动游戏
@@ -1108,14 +1115,13 @@ forge_client
 **1.20.2Forge以上需要启动2次才行，也是就是安装与启动**
 
 ### Fabric获取与启动
-获取需要根据游戏版本来
+首先Faric的元数据的接口在这个网址里面
 ```
 GET https://meta.fabricmc.net/
-```
-可以知道有那些接口  
-![](./pics/pic5.png)
-其中`/v2/versions`可以获取Fabric元数据
-
+``` 
+![](./pics/pic5.png)  
+通过这张图就可以知道有那些接口  
+其中`/v2/versions`可以获取Fabric全部元数据
 ```
 GET https://meta.fabricmc.net/v2/versions
 ```
@@ -1198,12 +1204,9 @@ GET https://meta.fabricmc.net/v2/versions
     ]
 }
 ```
-
-这里只需要关注`game`与`loader`
+这里只需要关注`game`与`loader`，其他数据都不是重要的数据  
 `game`为支持的版本  
 `loader`为加载器版本  
-
-其他数据都不是重要的数据  
 然后选定一个游戏版本，获取支持的加载器版本
 ```
 GET https://meta.fabricmc.net/v2/versions/loader/1.20.4
@@ -1262,8 +1265,8 @@ GET https://meta.fabricmc.net/v2/versions/loader/1.20.4
     ...
 ]
 ```
-这一个大列表表示，这个游戏版本支持的加载器版本  
-然后再选定一个加载器版本，获取加载器数据
+这一个大列表这个游戏版本支持的加载器版本列表  
+然后再选定一个加载器版本，获取加载器元数据
 ```
 GET https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.7/profile/json
 ```
@@ -1295,9 +1298,11 @@ GET https://meta.fabricmc.net/v2/versions/loader/1.20.4/0.15.7/profile/json
     ]
 }
 ```
-到这里，就跟Forge的方式是一模一样的了，启动参数也是一模一样的方式添加  
-同时Fabric启动也不需要运行前安装，直接填写参数启动即可
-
+到这里，其结构跟Forge是相近的，处理方式可以说是一模一样的了  
+运行使用的启动参数也是一模一样的添加方式，你需要添加进去  
+同时Fabric启动也不需要运行前安装，直接填写参数启动即可  
+同理MainClass也要进行修改  
+Fabric的启动参数大致为
 ```
 javaw.exe
 -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
@@ -1311,8 +1316,7 @@ javaw.exe
 -Dminecraft.launcher.version=${launcher_version}
 -cp
 ${classpath}
--DFabricMcEmu=
-net.minecraft.client.main.Main
+-DFabricMcEmu= net.minecraft.client.main.Main 
 net.fabricmc.loader.impl.launch.knot.KnotClient
 --username"
 ${auth_player_name}
@@ -1337,6 +1341,7 @@ ${user_type}
 --versionType
 ${version_type}
 ```
+也需要将Fabric的libs全部加到`ClassPath`中
 
 ### NeoForge
 NeoForge跟Forge的下载与启动时一模一样的  
