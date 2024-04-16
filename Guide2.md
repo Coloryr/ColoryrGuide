@@ -266,3 +266,30 @@ idf.py build
 ```
 idf.py build
 ```
+
+# 使用Vsocde-idf插件
+
+安装[idf插件](https://marketplace.visualstudio.com/items?itemName=espressif.esp-idf-extension)
+
+**如果你之前已经装过了ESP-IDF，即用上面的方法安装的，需要先删除文件夹`.espressif/python_env`，如果没删除则会安装失败**
+
+开始配置插件
+
+![](/pic/pic38.png)
+
+选择第二个`ADVANCED`  
+然后选择安装的路径  
+![](/pic/pic39.png)  
+
+如果已经有idf了直接选择查找IDF，若没有选择一个IDF版本下载
+
+然后点击下一步，安装工具链  
+![](/pic/pic40.png)  
+同理，如果已经有了工具链，则选择现有路径  
+然后点击下一步即可自动安装并配置
+
+## 新建工程
+这个IDF插件如果开启之前的工程，即不是通过插件生成的工程会出现一些问题  
+推荐新建一个工程然后复制配置文件到你的原有工程里面去
+
+![](/pic/pic41.png)  
