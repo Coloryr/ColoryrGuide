@@ -42,9 +42,12 @@
   - [NBT读取示例](Guide3.md/#NBT读取示例)
   - [地图区块与NBT标签](Guide3.md/#地图区块与NBT标签)
 - [其他资源读取](Guide6.md/#NBT标签读取)
-- [玩家皮肤获取](Guide7.md/#NBT标签读取)
-- [CurseForge资源获取](Guide8.md/#NBT标签读取)
-- [Modrinth资源获取](Guide9.md/#NBT标签读取)
+  - [材质包解析](Guide3.md/#材质包解析)
+  - [光影包解析](Guide3.md/#光影包解析)
+  - [数据包解析](Guide3.md/#数据包解析)
+- [玩家皮肤获取](Guide7.md/#玩家皮肤获取)
+- [CurseForge资源获取](Guide8.md/#CurseForge资源获取)
+- [Modrinth资源获取](Guide9.md/#Modrinth资源获取)
 
 ## 前言
 
