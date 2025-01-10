@@ -17,14 +17,13 @@ iex (iwr -useb https://aka.ms/vcpkg-init.ps1)
 
 [安装VSCode](https://code.visualstudio.com/) [安装插件 STM32 VS Code Extension](https://marketplace.visualstudio.com/items?itemName=stmicroelectronics.stm32-vscode-extension)  
 [安装stm32cubemx](https://www.st.com/en/development-tools/stm32cubemx.html)  
-[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程不要修改路径，或者改成你知道的路径
-
+[安装stm32cubeclt](https://www.st.com/en/development-tools/stm32cubeclt.html)，安装过程最好不要修改路径，或者改成你知道的路径
 
 1. 使用CubeMX创建工程，然后选择生成CubeIDE工程
-![](/pic/pic37.png)
+![](./pic/pic37.png)
 
 2. 在VSCode左侧导入工程  
-![](/pic/pic20.png)
+![](./pic/pic20.png)
 选择CubeIDE工程
 
 3. 下面步骤二选一  
@@ -52,9 +51,9 @@ set(WINDOWS_ST_CLT_PATH "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin/")
 6. 重启VSCode
 
 到此Build和Debug就都可用了
-![](/pic/pic21.png)
+![](./pic/pic21.png)
 
-## VSCode Cmake Ninja GCC Stm32CubeMX Debug (不推荐，麻烦)
+## VSCode Cmake Ninja GCC Stm32CubeMX Debug (不推荐，已过时)
 
 首先安装[cmake](https://cmake.org/)，[gcc](https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads)，[ninja](https://ninja-build.org/)，[MinGW](https://gnutoolchains.com/mingw64/)，[openocd](https://openocd.sourceforge.io/)
 
@@ -63,11 +62,11 @@ set(WINDOWS_ST_CLT_PATH "C:/ST/STM32CubeCLT/GNU-tools-for-STM32/bin/")
 VSCode与Stm32CubeMX的初始化有大量教程，这里不再说明
 
 只用展开文件，然后添加进运行环境  
-![](/pic/pic1.png)
+![](./pic/pic1.png)
 
 在控制台输入测试  
-![](/pic/pic2.png)  
-![](/pic/pic3.png)
+![](./pic/pic2.png)  
+![](./pic/pic3.png)
 
 如果都能找到说明正常
 
@@ -85,15 +84,15 @@ Cortex-Debug需要安装对应芯片的扩展包，我用的是H7所以安装H7�
 语法高亮可以自行选择
 
 使用Stm32CubeMX生成一个项目  
-![](/pic/pic4.png)
-![](/pic/pic5.png)  
+![](./pic/pic4.png)
+![](./pic/pic5.png)  
 这里演示使用STM32H743并启用了rtos和fatfs
 
 代码生成选项
-![](/pic/pic6.png)  
+![](./pic/pic6.png)  
 
 生成代码之后的文件夹  
-![](/pic/pic7.png)  
+![](./pic/pic7.png)  
 
 使用VSCode打开此文件夹，新建一个`CMakeLists.txt`
 内容大致为
@@ -250,7 +249,7 @@ add_definitions(
 ```
 
 在`.cproject`中查找`definedSymbols`  
-![](/pic/pic8.png)  
+![](./pic/pic8.png)  
 其中的`value`就是要添加的东西  
 修改后为(要记得前面加上`-D`)
 ```CMake
@@ -265,7 +264,7 @@ file(GLOB_RECURSE SOURCES
 ```
 
 在`.cproject`中查找`sourceEntries`  
-![](/pic/pic9.png)  
+![](./pic/pic9.png)  
 其中的`Name`就是要添加的东西  
 修改后为
 ```CMake
@@ -280,7 +279,7 @@ include_directories(
 ```
 
 在`.cproject`中查找`includePath`  
-![](/pic/pic10.png)  
+![](./pic/pic10.png)  
 其中的`Value`就是要添加的东西  
 修改后为(前面的`../`去掉)
 ```CMake
@@ -377,27 +376,27 @@ Building ${BIN_FILE}")
 
 点击VSCode的左下角Cmake，或者重新打开VSCode  
 选择Gcc工具链  
-![](/pic/pic11.png)  
+![](./pic/pic11.png)  
 `GCC 10.3.1 arm-none-eabi`
 
 CMake会自动加载，出现这步则加载完成
-![](/pic/pic12.png)  
+![](./pic/pic12.png)  
 
 点击`build`编译
-![](/pic/pic13.png)  
+![](./pic/pic13.png)  
 正常来说会使用`ninja`来编译并链接
 
 工程创建和构建到此完成，下面是调试
 
 打开VSCode的调试界面，点击`创建 launch.json文件`
-![](/pic/pic14.png)  
+![](./pic/pic14.png)  
 选择`C++ GBD`
 
 点击`显示所有自动调试配置`->`添加配置`
-![](/pic/pic15.png)  
+![](./pic/pic15.png)  
 
 找到`cortex-debug`  
-![](/pic/pic16.png)  
+![](./pic/pic16.png)  
 选择你的调试器类型
 
 修改`executable`的`.elf`路径
@@ -409,18 +408,18 @@ CMake会自动加载，出现这步则加载完成
 
 # 集成开发工具
 
-## Keil (不推荐)
+## Keil (不推荐，付费)
 在[官网](https://www.keil.com/demo/eval/arm.htm)下载，安装后即可使用
 
 接下来还需要[安装](https://www.keil.com/dd2/pack/)不同的单片机软件包
 
-## STM32CubeIDE (新手推荐)
+## STM32CubeIDE (新手推荐，后期乏力)
 
 https://www.st.com/zh/development-tools/stm32cubeide.html
 
 和`Keil`一样，这个也是直接安装就能用的，新建工程选择单片机和就能进行编写代码，需要安装芯片包
 
-## VSCode + PlatformIO IDE (新手推荐)
+## VSCode + PlatformIO IDE (新手推荐，后期乏力)
 
 安装完[Vscode](https://code.visualstudio.com/)后还需要装插件[PlatformIO IDE](https://marketplace.visualstudio.com/items?itemName=platformio.platformio-ide)
 

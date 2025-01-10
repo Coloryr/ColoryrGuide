@@ -23,7 +23,7 @@ git checkout -b release/v5.1 origin/release/v5.1
 设置环境变量
 IDF_PATH
 
-![](/pic/pic17.png)
+![](./pic/pic17.png)
 
 cd到esp-idf目录
 ```
@@ -56,7 +56,7 @@ For more details please visit our website: https://docs.espressif.com/projects/e
 [安装python3](https://www.python.org/downloads/)
 将python环境变量加入到Path中
 
-![](/pic/pic18.png)
+![](./pic/pic18.png)
 
 重启cmd窗口
 再次输入
@@ -157,7 +157,6 @@ All done! You can now run:
 
 ```
 
-
 [参考](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/linux-macos-setup.html#get-started-set-up-tools)
 
 ## esp-idf更新（如果需要）
@@ -169,7 +168,8 @@ git submodule update --init --recursive
 
 ## 编译项目
 
-首先拷贝一份模板
+首先拷贝一份模板，例如esp-idf目录下面的`examples/get-started/blink`  
+整个文件夹都复制，这是一个cmake项目，一个文件夹为一个项目
 
 在esp-idf的目录下打开cmd输入
 ```
@@ -223,7 +223,8 @@ Go to the project directory and run:
 idf.py build
 ```
 
-此时，代码目录会出现一个build文件夹
+此时，代码会被构建，项目目录会出现一个build文件夹，这里面是构建产物  
+如果能成功构建，说明你的esp-idf已经配置完毕
 
 ## VSCode配置
 
@@ -260,7 +261,7 @@ idf.py build
 
 其中的`compilerPath`需要根据你的esp32芯片进行修改
 
-![](/pic/pic19.png)
+![](./pic/pic19.png)
 
 自动补全啥的都会生效，但是VsCode内不能编译，只能在cmd内
 ```
@@ -275,16 +276,16 @@ idf.py build
 
 开始配置插件
 
-![](/pic/pic38.png)
+![](./pic/pic38.png)
 
 选择第二个`ADVANCED`  
 然后选择安装的路径  
-![](/pic/pic39.png)  
+![](./pic/pic39.png)  
 
 如果已经有idf了直接选择查找IDF，若没有选择一个IDF版本下载
 
 然后点击下一步，安装工具链  
-![](/pic/pic40.png)  
+![](./pic/pic40.png)  
 同理，如果已经有了工具链，则选择现有路径  
 然后点击下一步即可自动安装并配置
 
@@ -292,4 +293,4 @@ idf.py build
 这个IDF插件如果开启之前的工程，即不是通过插件生成的工程会出现一些问题  
 推荐新建一个工程然后复制配置文件到你的原有工程里面去
 
-![](/pic/pic41.png)  
+![](./pic/pic41.png)  
