@@ -11,6 +11,10 @@
 
 [Cmake+Gcc+Vscode](guide3/Guide3.md)
 
+## C#语言相关
+
+[C#教程](guide6/README.md)
+
 ## MCU相关
 
 [STM32开发](guide3/Guide1.md)  

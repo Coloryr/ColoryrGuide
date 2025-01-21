@@ -105,3 +105,34 @@ Git的使用很简单，这里有`命令行`跟`Gui界面`两种使用
 
 `github desktop`也是差不多的  
 ![](./pics/pic20.png)  
+
+## IntelliJ IDEA
+
+[IntelliJ IDEA](https://www.jetbrains.com/idea/)是jetbrains推出的JAVA开发IDE，集成了大部分JAVA所需的开发工具  
+![](https://www.jetbrains.com/idea/img/overview-heading-screenshot.png)  
+支持Windows、Linux、Macos操作系统，只需要现在安装即可使用，最新版本支持中文  
+`IntelliJ IDEA`有`社区版`和`专业版`之分，社区版是免费使用的，专业版需要订阅后才能使用  
+如果你是重度Java开发者，则很有可能会用到专业版里面的付费工具，社区版则需要靠插件支持  
+
+`IDEA`支持的语言有`Java`和`Kotlin`，安装插件后可以支持`Rust`等
+
+## Android Studio
+
+[Android Studio](https://developer.android.google.cn/studio?hl=zh-cn)是谷歌根据`IntelliJ IDEA 社区版`改进而来的，专门为安卓开发的IDE  
+![](https://developer.android.google.cn/static/images/studio/studio-hero_960.png?hl=zh-cn)  
+自带界面编辑器，UI制作等一系列安卓开发会用得上的工具  
+没有中文汉化，操作跟`IntelliJ IDEA`几乎一样，以前`IntelliJ IDEA`也能做安卓开发，但在新版本之后删除了该功能，需要做安卓开发得使用`Android Studio`  
+
+## Visual Studio 2022
+
+[Visual Studio 2022](https://visualstudio.microsoft.com/zh-hans/vs/)是微软在`Windows`上使用的集成IDE  
+支持很多编程语言`C\C++`、`C#`、`VB`、`F#`、`Python`、`JS`、`TS`等  
+自带官方汉化，且微软有完整的[使用教程](https://learn.microsoft.com/zh-cn/visualstudio/windows/?view=vs-2022&preserve-view=true)，根据这个教程就能快速入门  
+`Visual Studio`有`社区版`、`专业版`、`企业版`3种，一般开发者用`社区版`就足够了，剩下的两个版本在多人协同才有优势  
+**Visual Studio只能在Windows上使用，如果你在其他操作系统上使用，则不会得到官方的支持**
+
+## XCode
+
+[XCode](https://developer.apple.com/cn/xcode/)是苹果针对自家平台生态的IDE，只能给苹果相关的设备开发应用程序  
+![](https://developer.apple.com/xcode/images/xcode-15-hero-large_2x.webp)
+**使用XCode必须拥有一台macos的电脑**
