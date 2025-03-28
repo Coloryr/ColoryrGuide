@@ -1,83 +1,57 @@
-![上一章](./README.md)
+# C#介绍
 
-# 认识C#代码
+`C#`是微软在`2000年6月发布`的一个使用`.NET框架`，继承了`C/C++`的强大，综合了`JAVA`的灵活性，同时是一门非常热门的编程语言  
+`C#`可以用在桌面平台开发(WPF，Winform)，Web应用开发(Asp)，跨平台移动开发(Maui)，游戏开发(Unity)、IoT设备程序开发(某些柜台机会用)，人工智能等领域(AI)  
 
-一个C#程序通常是这样组成  
-![](./pics/pic16.png)  
+`C#`是一门编译型强类型语言，编译后生成中间二进制(IL)，需要在Dotnet虚拟机上运行，因此可以实现生成一次在各类操作系统上运行，其运行效率最大可达90%的`C/C++`，某些情况下可能会比`C/C++`还要快  
+支持[Native AOT](https://learn.microsoft.com/zh-cn/dotnet/core/deploying/native-aot/)编译，可以生成本机二进制代码加速启动，减少第一次启动时间  
 
-程序里面可以有多个`程序集(dll)`
-一个程序集里面可以有多个`命名空间(namespace)`  
-一个命名空间里面可以多个`类(class)`  
-一个类里面可以有多个`函数(function)`，`成员变量(field)`，`属性(property)`，等其他内容  
-函数里面就是实际代码了，就是你想让程序需要做些什么事情  
+公共语言运行时[CLR](https://learn.microsoft.com/zh-cn/dotnet/standard/clr)是`.NET`提供了一个称为公共语言运行时的运行时环境，它运行代码并提供使开发过程更轻松的服务，C#编译后会生成CLR可以识别的二进制文件，同时C#也可以访问并调用CLR二进制里面的内容  
 
-不同的命名空间里面可以有名字相同的类  
-不同的类里面可以有名字相同的函数、变量、属性等  
+`.Net`有`.NET Core`与`.NET Framework`两种，目前常用的是`.NET Framework`，但是新软件开发都选择`.NET Core`，dotnet8指的就是`.NET Core 8`  
+`.NET Framework`是windows自带的框架只能在windows上运行，而`.NET Core`可以在大部分主流操作系统上运行  
+关于.Net的更多内容，可以在[微软文档](https://learn.microsoft.com/zh-cn/dotnet/core/introduction)里面查看，这里只关注C#  
 
-观察生成的示例代码
+到2025年，dotnet已经发展到了`dotnet10`，增加了许多特性，~~但dotnet9有一个[严重的bug](https://github.com/dotnet/runtime/issues/109812)等它修复并发布了再推荐使用~~  
+由于dotnet9属于标准维护时长STS，dotnet10目前正在预览版中，本教程选择`dotnet8`为教程版本  
+非特殊情况下dotnet的语言会向下兼容，所以你在dotnet8下编写的代码基本都能在更新的dotnet上运行，反之不行  
+有些时候还会二进制兼容，也就是dotnet8下编译生成的文件可以继续在更高版本的dotnet下正常运行，因此不需要过于担心兼容性问题  
 
-```C#
-namespace ConsoleApp1
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
-}
-```
+`C#`支持指针使用，开启不安全代码支持后，可以在C#里面使用指针，从而可以很方便的与`C/C++`库相互调用  
+同时还带有很多语法糖，极大的简化了代码长度  
+如果你学习过`C/C++`或者`Java`语言，则可以很快的上手  
+自带独特的`Linq`，可以让你快速查找需要的数据  
+以及多线程支持的`async`与`await`，可以让你方便的快速编写`异步多线程`代码
 
-可以看到有：
-- `namespace ConsoleApp1`表示里面是该命名空间的内容，`ConsoleApp1`是命名空间的名字  
-- `internal class Program`表示里面是该类的内容，`internal`表示这个后面的东西是部分公开的，`Program`指的是类名  
-- `static void Main(string[] args)`表示里面是函数名字为`Main`的`静态函数`，输入类型为string类型的字符串，无输出  
-- `Console.WriteLine("Hello, World!");`，指的是调用类`Console`里面的静态函数`WriteLine`，目的是往控制台输出一个`Hello, World!`字符串  
+## 编程环境搭建
 
-在这个最简单的示例代码里面，就包含了C#中基础知识  
-`命名空间(namespace)`这个与`C++`的命名空间是同一个概念，用于区分代码所在的区域，常见使用`{}`大括号把它包裹起来  
-有时会简写成
-```C#
-namespace ConsoleApp1;
+在Windows下，使用C#编程语言编写软件有很多种方法，你可以选择使用
+- Visual Studio 2022
+- VSCode + Dotnet SDK
+- Rider + Dotnet SDK
 
-internal class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Hello, World!");
-    }
-}
-```
-表示下面的内容都是属于`ConsoleApp1`这个命名空间里面  
+要使用`Visual Studio 2022`，首先需要下载并安装`Visual Studio Install`  
+打开这个[下载地址](https://visualstudio.microsoft.com/zh-hans/vs/community/)点击下载  
+![](./pics/pic1.png)  
+安装`Visual Studio Install`  
+![](./pics/pic2.png)  
 
-`类(class)`这个与`C++`的类也是同一个概念，这是面向对象的最基本的内容  
+选中`Visual Studio Community 2022`
+安装下面组件
+- ASP.NET 和 Web开发
+- .Net桌面开发
+- Windows应用程序开发
+- Visual Studio 扩展开发
 
-这里`namespace`和`class`可以先理解为这是个盒子，里面可以装内容，和其他地方区分开来  
+然后在安装位置修改你需要的位置即可  
+![](./pics/pic3.png)  
 
-`函数(function)`就是对重复功能的包装，所有需要执行的代码都需要写在函数里面，程序要有函数才能执行操作，函数只能放在类里面，不能放在命名空间里面，及不能这样写  
-```C#
-namespace ConsoleApp1;
+安装完成后启动即可完成搭建
 
-static void Main(string[] args)
-{
-    Console.WriteLine("Hello, World!");
-}
-```
-**这样写是错误的，函数需要在类里面**  
-函数里面就是程序的具体操作，例如里面可以有`赋值语句`，`函数调用`，`计算`等，**所有你想让程序执行的内容都需要写在函数里面**  
+如果要使用`VSCode + Dotnet`，首先需要下载并安装[VSCode](https://code.visualstudio.com/)与[Dotnet SDK](https://dotnet.microsoft.com/zh-cn/download)  
+安装完成后，打开`VSCode`安装插件[C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)  
+具体教程这里不提供，主要以VS为主  
 
-`internal`是一个`访问修饰符`，表示这个东西的能够访问的范围  
-常用访问修饰符为：
-- `public`表示任何地方都可以访问
-- `internal`表示只能在当前程序集内访问
-- `protected`表示只能类或派生自包含类访问
-- `private`表示只有自己的类才能访问
-还有一个不常用的：
-- `file`表示仅在当前源文件中可以访问
+如果你使用[Rider](https://www.jetbrains.com/zh-cn/rider/)作为开发IDE，这个也是下载并安装就可以了，但同时也需要安装[Dotnet SDK](https://dotnet.microsoft.com/zh-cn/download)  
 
-`static`表示静态，
-
-一个C#程序里面，至少要有一个名字为`Main`的静态函数，否则将无法编译
-
-
+[下一章](./page2.md)
