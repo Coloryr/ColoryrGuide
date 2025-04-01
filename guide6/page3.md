@@ -108,17 +108,17 @@ Console.WriteLine("Hello, World!");
 ```
 都是不正确的
 
-但有些时候，你会看到另一种奇怪的写法，这中写法是对的
+但有些时候，你会看到另一种奇怪的写法，这样写是对的
 ```C#
 Console.WriteLine("Hello, World!");
 ```
 是的没错，整个源代码文件里面只有这一行代码，这是dotnet的`顶级代码`特性  
-表示这整个源文件里面的代码都会放在`Main函数`里面，此时命名空间和类名都由编译器帮你填写  
+相当于这整个源文件里面的代码都会放在`Main函数`里面，运行的时候会顺序执行下去，同时编译时命名空间和类名都由编译器帮你填写  
 这个写法可以用作C#软件的快速开发，省去写命名空间与类的麻烦  
 
 ## 修饰符
 
-在下面这还代码中
+在下面这行代码中
 ```C#
 internal class Program
 ```
@@ -127,7 +127,8 @@ internal class Program
 - `public`表示任何地方都可以访问
 - `internal`表示只能在当前程序集内访问
 - `protected`表示只能类或派生自包含类访问
-- `private`表示只有自己的类才能访问
+- `private`表示只有自己的类才能访问  
+
 还有一个不常用的：
 - `file`表示仅在当前源文件中可以访问
 默认情况下，没有声明`访问修饰符`默认是`private`，也就是私有的，只能自己访问  
@@ -143,11 +144,18 @@ static void Main(string[] args)
 
 ## 主函数
 
+将之前的代码继续往后拆分
+```C#
+void Main(string[] args)
+```
+表示声明一个函数，名字为`Main`，无返回值，输入值为`string`数组，剩余的内容在后面的章节说明  
+
 在一个C#可运行的程序里面，至少要有一个名字为`Main`的静态函数，否则将无法编译  
 也就是这个项目如果编译成一个可执行的软件，需要一个主函数，也就是程序入口  
 如果这个项目编译成一个类库，则可以不需要有这个函数  
 同时，你也可以添加多个`Main`静态函数在不同的类里面，但是在编译的时候需要添加一个编译设置，表示那个才是真正的入口函数  
 ![](./pics/pic40.png)  
+大部分程序都不会在一个程序里面写多个`Main`函数，因此后续的内容都是以一个主函数为主  
 
 ## 注释
 
@@ -185,5 +193,20 @@ internal class Program
 因此叫做`XML 文档注释`，用于生成代码的 API 文档
 
 本章完整代码参考[src/guide1](./src/guide1/Program.cs)
+
+## 宏定义
+
+与`C语言`的`宏定义`一样的效果
+```C#
+#if DEBUG
+Console.WriteLine("Debug Mode");
+#else
+Console.WriteLine("Release Mode");
+#endif
+```
+使用`#`+语法开始宏定义，宏定义会在编译之前替换代码  
+例如上面这部分代码，如果编译模式为`Debug`，则上面那行`Console.WriteLine`代码会被编译，否则下面那行代码会被编译  
+宏定义可以用来处理不同平台下代码差距，可以定义编译定义来启用或者关闭相关代码  
+具体内容可以参考[C# 预处理器指令](https://learn.microsoft.com/zh-cn/dotnet/csharp/language-reference/preprocessor-directives)
 
 [上一章](./page4.md)
