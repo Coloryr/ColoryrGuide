@@ -84,7 +84,7 @@ var car2 = new Car(); //实例化一个对象，并作为一个变量car2
 
 例如需要给车设置属性，并调用方法
 ```C#
-var car = new Car();  //实例化一个对象
+var car = new Car();  //实例化一个对象car
 car.X = 1;            //给X属性赋值1
 car.Y = car.X;        //给Y属性赋值X属性的值
 car.Start();          //调用Start这个方法
@@ -96,7 +96,7 @@ car.Start();          //调用Start这个方法
 
 通常还会见到`static`这种东西写在类、变量或者函数上，表示该类、变量或者函数为静态  
 静态的意思就是，不需要实例化就能直接调用  
-也就是说，静态相当于已经实例化了一个实例，然后调用的时候使用这个实例，但是与其他地方调用会共享  
+也就是说，静态相当于已经实例化了一个实例，然后调用的时候使用这个实例，且会共享使用一个实例  
 
 ```C#
 Car.Start(); //直接调用类Car的函数Start，不需要
@@ -123,7 +123,191 @@ class Car
 
 ## 构造函数
 
+如果你希望，在实例化的时候需要指定初始参数，则可以使用构造函数  
+常见的构造函数写法  
+```C#
+class 类名
+{
+    访问修饰符 类名()
+    {
 
+    }
 
+    访问修饰符 类名(输入参数)
+    {
 
+    }
+}
+```
 
+例如
+```C#
+class Car
+{
+    public int X;  //表示长
+    public int Y;  //表示宽
+    public int Z;  //表示高
+
+    public Car(int x, int y, int z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+}
+```
+
+当定义了构造函数后，实例化需要严格按照构造函数实现  
+```C#
+//var car = new Car();   错误，构造参数不符合
+var car = new Car(1, 2, 1);  //实例化一个对象car，同时传入构造参数
+```
+
+构造函数也可以重载，例如
+```C#
+class Car
+{
+    public int X;  //表示长
+    public int Y;  //表示宽
+    public int Z;  //表示高
+
+    public Car()
+    {
+
+    }
+
+    public Car(int x, int y, int z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+    }
+}
+```
+此时实例化对象可以写成  
+```C#
+var car1 = new Car();
+var car2 = new Car(1, 2, 1);
+```
+
+## 构造时赋值
+
+如果你想只需要`x`和`y`给初始值，可以将构造函数修改为只有x和y的输入参数，或者使用下面的实例化方法  
+```C#
+var car1 = new Car()
+{
+    X = 1,
+    Y = 2
+};
+```
+这表示，先实例化Car，然后再给X和Y的属性赋值，执行下面代码  
+```C#
+class Car
+{
+    public int X;  //表示长
+    public int Y;  //表示宽
+    public int Z;  //表示高
+
+    public Car()
+    {
+        Console.WriteLine("X is:" + X);
+        Console.WriteLine("Y is:" + Y);
+    }
+}
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+
+        var car = new Car()
+        {
+            X = 1,
+            Y = 2
+        };
+    }
+}
+```
+你会发现输出是
+```
+Hello, World!
+X is:0
+Y is:0
+```
+但如果你需要先赋值再实例化，就只能通过构造函数传入了  
+```C#
+class Car
+{
+    public int X;  //表示长
+    public int Y;  //表示宽
+    public int Z;  //表示高
+
+    public Car(int x, int y, int z)
+    {
+        X = x;
+        Y = y;
+        Z = z;
+
+        Console.WriteLine("X is:" + X);
+        Console.WriteLine("Y is:" + Y);
+    }
+}
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Hello, World!");
+
+        var car = new Car(1, 2, 3)
+        {
+            X = 4,
+            Y = 5
+        };
+    }
+}
+```
+此时输出为
+```
+Hello, World!
+X is:1
+Y is:2
+```
+
+## 设置器与获取器
+
+在类里面，其实`public int X;`严格来讲并不是一个属性，而是一个成员变量，C#中属性的真正写法是  
+```C#
+访问修饰符 变量类型 变量名 { 访问器; }
+```
+例如
+```C#
+public int X { get; set; }
+```
+其中里面的`get;`与`set;`叫做`Getter`与`Setter`  
+这样做可以保证`X`这个是属性，相当于两个函数
+```C#
+public int GetX()
+{
+    return X;
+}
+public void SetX(int value)
+{
+    X = value;
+}
+```
+这种是一个标准属性写法，只不过C#相对于其他语言做了简化  
+
+如果你的属性只读，可以这样写
+```C#
+public int X { get; }
+```
+当你确定了X的值，可以简化为
+```C#
+public int X => 1;
+```
+或者需要外部可以访问，但是只能内部设置，可以这样写
+```C#
+public int X { get; private set; }
+```

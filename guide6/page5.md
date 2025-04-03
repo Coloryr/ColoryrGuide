@@ -80,4 +80,40 @@ private void Test2(int a)
 }
 ```
 
+## 函数重载
+
+同一个函数名可以声明不同函数，只需要保证输入参数不一样就行  
+常见函数重载
+```C#
+public void Test1()
+{
+
+}
+
+public void Test1(int a)
+{
+
+}
+
+public void Test1(string a)
+{
+
+}
+```
+此时函数名为`Test1`的函数有三个，同时他们的输入参数都不一样，使用不同输入参数来区分具体调用那个函数  
+在某些地方，可以使用函数重载来说明这个功能可以有不同的实现方式，但是操作过程都一样  
+例如一个加法
+```C#
+public int Add(int a, int b)
+{
+    return a + b;
+}
+
+public float Add(float a, float b)
+{
+    return a + b;
+}
+```
+dotnet提供的库里面，有很多函数重载，可以根据需要选择使用的函数  
+
 [下一章](./page6.md)
