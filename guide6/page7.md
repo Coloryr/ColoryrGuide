@@ -1,49 +1,57 @@
 [上一章](./page6.md)
 
-# 面向对象编程
+# 其他结构类型
 
-什么是面向对象，很简单，就是用蓝图造物品，具体的定义可以参考[菜鸟教程](https://www.runoob.com/cplusplus/cpp-classes-objects.html)  
-这里说一下我自己的理解，面向对象的本质就是万物皆英文的`obj`中文的`对象`  
-所有操作都是以`obj`为最小单位，通过使用`obj`里面的内容或者读取`obj`里面的信息来实现自己的程序  
+常用的还有`枚举(enum)`，`结构体(struct)`，`记录(record)`，元组类型
 
-在使用面向对象使用前，需要制造一个蓝图，然后用这个蓝图重复制造物品  
-- 蓝图就是`类`
-- 制造出来的东西叫`对象`
-- 制造过程叫做`实例化`
+## 枚举
 
-在`obj`里面，通常会有一些东西，这些东西在蓝图里面有另外的名称，但是本质是一样的  
-- 蓝图\对象
-- 变量\属性
-- 函数\方法
-- 所有内容\成员
-
-在C#中，若创建一个蓝图相当于创建一个类  
-例如我需要创建一辆车的蓝图，需要有长宽高的变量，启动和关闭的函数，这个类可以这样写
+有些时候，我们需要用一些数字来代表一些内容  
+例如数字0代表星期日，1代表星期一，2代表星期二等等  
+写的时候有可能还会记得数字几代表什么意思，但是时间长了有可能会忘记  
+因此可以使用`枚举`来替换掉这个数字，直接用单词记录  
+常见的枚举写法有
 ```C#
-class Car
+public enum Week
 {
-    public int X;  //表示长
-    public int Y;  //表示宽
-    public int Z;  //表示高
-
-    public void Start()  //启动
-    {
-
-    }
-
-    public void Stop()  //关闭
-    {
-
-    }
+    Sunday,
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday
 }
 ```
-
-然后使用蓝图造车
+还有
 ```C#
-var car = new Car();
+public enum Week
+{
+    Sunday = 0,
+    Monday = 1,
+    Tuesday = 2,
+    Wednesday = 3,
+    Thursday = 4,
+    Friday = 5,
+    Saturday = 6
+}
 ```
-此时这个car变量就是一个对象了，里面有`X`、`Y`、`Z`三个属性，`Start`和`Stop`这两个方法
+又或者
+```C#
+public enum DataType
+{
+    Command0 = 0x01,
+    Command1 = 0x02,
+    Data0 = 0x11,
+    Data1 = 0x12
+}
+```
+也就是说，其实枚举跟数字有一些联系，可以将枚举的值直接转换为数字，也可以将数字直接转换为枚举  
+```C#
+var week = Week.Sunday;  //定义一个类型为Week枚举的变量week，其值为Sunday
+var weeknum = (int)week;  //定义一个类型为int的变量weeknum，其值为Sunday对应的数值，也就是0
+```
 
-## 静态Static
+## 结构体
 
-通常还会见到`static`这种东西写在变量或者函数上
+[上一章](./page8.md)
