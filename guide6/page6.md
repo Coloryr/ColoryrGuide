@@ -298,6 +298,10 @@ public void SetX(int value)
 }
 ```
 这种是一个标准属性写法，只不过C#相对于其他语言做了简化  
+属性在声明的时候，可以赋予一个初始值，例如
+```C#
+public int X { get; set; } = 1;
+```
 
 如果你的属性只读，可以这样写
 ```C#
@@ -311,3 +315,61 @@ public int X => 1;
 ```C#
 public int X { get; private set; }
 ```
+或者你又想只让属性只能设置一次，那么可以使用
+```C#
+public int X { get; init; }
+```
+这表示`X`这个属性，只能设置一次值  
+这与直接使用`=>`有一些区别，虽然都是只读属性，例如
+```C#
+public object X { get; init; } = new();
+public object Y => new();
+```
+其中，当你获取属性`X`时，总是会获取到同一个对象，但是获取属性`Y`时，每次获取的对象都不是一样的  
+
+属性在设置值的时候，可以修改get或者set生效的部分，也就是函数里面的内容  
+```C#
+private int _a;
+public int A 
+{
+    get
+    {
+        return _a;
+    }
+    set
+    {
+        _a = value;
+    }
+}
+```
+添加了自定义之后，就可以对输入的值进行修改判定，例如我只允许某个范围的数值输入  
+```C#
+private int _a;
+public int A 
+{
+    get
+    {
+        return _a;
+    }
+    set
+    {
+        if (value > 10 || value < 0)
+        {
+            return;
+        }
+
+        _a = value;
+    }
+}
+```
+当然，也可以做其他操作
+```C#
+public int A 
+{
+    set
+    {
+        SetValue(value);
+    }
+}
+```
+在大部分主流界面框架，例如`WPF`或者`Avalonia`中，控件里面基本是都属性，然后设置属性的时候会触发某些事件，而这个属性的变化监测就是通过这个自定义实现的
